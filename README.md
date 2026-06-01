@@ -31,6 +31,7 @@ configs:
 npm install
 npm run validate
 npx tsx src/cli.ts compose.yml
+npx tsx src/cli.ts --json compose.yml
 ```
 
 Try the fixtures:
@@ -46,6 +47,22 @@ Output:
 compose.yml:12:27 Compose will interpolate $POSTGRES_PASSWORD inside configs.roles.content before the container starts.
   config: roles
   suggestion: Use $$POSTGRES_PASSWORD when the generated file should keep the runtime environment reference.
+```
+
+JSON output:
+
+```json
+[
+  {
+    "filePath": "compose.yml",
+    "configName": "roles",
+    "variable": "$POSTGRES_PASSWORD",
+    "line": 12,
+    "column": 27,
+    "message": "Compose will interpolate $POSTGRES_PASSWORD inside configs.roles.content before the container starts.",
+    "suggestion": "Use $$POSTGRES_PASSWORD when the generated file should keep the runtime environment reference."
+  }
+]
 ```
 
 ## What It Checks

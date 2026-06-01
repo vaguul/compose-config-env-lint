@@ -1,6 +1,6 @@
 {
   "name": "compose-config-env-lint",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "CLI lint for Docker Compose configs.content values that accidentally interpolate runtime env variables.",
   "type": "module",
   "bin": {
