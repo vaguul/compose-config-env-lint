@@ -1,0 +1,44 @@
+{
+  "name": "compose-config-env-lint",
+  "version": "0.1.0",
+  "description": "CLI lint for Docker Compose configs.content values that accidentally interpolate runtime env variables.",
+  "type": "module",
+  "bin": {
+    "compose-config-env-lint": "./src/cli.ts"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "tsx --test tests/**/*.test.ts",
+    "validate": "npm run typecheck && npm test"
+  },
+  "keywords": [
+    "docker-compose",
+    "compose",
+    "coolify",
+    "env",
+    "lint",
+    "self-hosted"
+  ],
+  "author": "Vaguul (Zemiax)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vaguul/compose-config-env-lint.git"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.6.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: password
+    configs:
+      - source: roles
+        target: /docker-entrypoint-initdb.d/99-roles.sql
+
+configs:
+  roles:
+    content: |
+      \set pgpass `echo "$$POSTGRES_PASSWORD"`
+      ALTER USER app WITH PASSWORD :'pgpass';
