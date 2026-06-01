@@ -55,6 +55,33 @@ compose.yml:12:27 Compose will interpolate $POSTGRES_PASSWORD inside configs.rol
 - unescaped `$VAR` and `${VAR}` references inside that content
 - escaped `$$VAR` references are allowed
 
+## Compose Interpolation Notes
+
+Docker Compose interpolates variables while it reads the Compose file. That is useful for values that should come from the host shell or a local `.env` file, but it is surprising when `configs.*.content` is used to generate a file that should read environment variables later inside the container.
+
+These values are host-side Compose interpolation and should be treated as suspicious inside `configs.*.content`:
+
+```yaml
+configs:
+  app-config:
+    content: |
+      token=$APP_TOKEN
+      database=${DATABASE_URL}
+      fallback=${APP_MODE:-development}
+```
+
+If the generated file should keep the literal runtime reference, escape the dollar sign with `$$`:
+
+```yaml
+configs:
+  app-config:
+    content: |
+      token=$$APP_TOKEN
+      database=$${DATABASE_URL}
+```
+
+Use unescaped `$VAR` only when the Compose host should resolve the value before the container is created. Use `$$VAR` when the generated config file, shell script, SQL file, or entrypoint fragment should resolve the value inside the running container.
+
 ## Why This Exists
 
 This is a narrow maintenance utility for self-hosted Docker and Coolify workflows. It is intentionally small, testable, and safe to run in CI before publishing Compose snippets in docs.
