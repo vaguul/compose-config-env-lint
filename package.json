@@ -1,23 +1,27 @@
 {
   "name": "compose-config-env-lint",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CLI lint for Docker Compose configs.content values that accidentally interpolate runtime env variables.",
   "type": "module",
   "bin": {
-    "compose-config-env-lint": "./src/cli.ts"
+    "compose-config-env-lint": "./dist/src/cli.js"
   },
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/src/index.js"
   },
+  "types": "./dist/src/index.d.ts",
   "files": [
-    "src",
+    "dist/src",
     "README.md",
     "LICENSE"
   ],
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "tsx --test tests/**/*.test.ts",
-    "validate": "npm run typecheck && npm test"
+    "validate": "npm run typecheck && npm test",
+    "prepare": "npm run build",
+    "prepack": "npm run build"
   },
   "keywords": [
     "docker-compose",

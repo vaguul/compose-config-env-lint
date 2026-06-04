@@ -27,6 +27,16 @@ configs:
 
 ## Usage
 
+Install from a GitHub release tag:
+
+```bash
+npm install --global github:vaguul/compose-config-env-lint#v0.1.2
+compose-config-env-lint compose.yml
+compose-config-env-lint --json compose.yml
+```
+
+Local development:
+
 ```bash
 npm install
 npm run validate
