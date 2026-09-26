@@ -38,7 +38,7 @@
     "url": "https://github.com/vaguul/compose-config-env-lint.git"
   },
   "dependencies": {
-    "yaml": "^2.8.1"
+    "yaml": "^2.9.1"
   },
   "devDependencies": {
     "@types/node": "^26.2.0",
